@@ -25,6 +25,10 @@ See [POWER.md](POWER.md) for full onboarding and usage details.
 - [AI-DLC Open-source Launch](https://aws.amazon.com/blogs/devops/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle-ai-dlc/)
 - [Source Repository](https://github.com/awslabs/aidlc-workflows)
 
+## Security
+See CONTRIBUTING for more information.
+
 ## License
 
-This power is licensed under the [MIT License](LICENSE). The AI-DLC workflow content is sourced from [awslabs/aidlc-workflows](https://github.com/awslabs/aidlc-workflows) (Apache-2.0).
+This power is licensed under the [MIT License](LICENSE). 
+The AI-DLC workflow content is sourced from [awslabs/aidlc-workflows](https://github.com/awslabs/aidlc-workflows) (Apache-2.0).

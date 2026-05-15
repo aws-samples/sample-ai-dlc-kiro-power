@@ -78,7 +78,7 @@ Confirm the files exists in .kiro folder. Once confirmed the core-workflow shoul
 
 ## Usage
 
-The workflow activates automatically and displays the welcome message and guides you through:
+The workflow activates automatically and displays the entire welcome message VERBATIM to the user. Do not summarize, trim, paraphrase, or modify the ASCII diagram and guides you through:
 
 1. Structured questions (written to files, not chat)
 2. Execution plans showing which stages will run

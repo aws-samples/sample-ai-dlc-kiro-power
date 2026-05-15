@@ -10,7 +10,7 @@ AI-DLC is a structured three-phase software development methodology (Inception â
 2. Download the [AI-DLC rule details](https://github.com/awslabs/aidlc-workflows/releases/latest) and place them at `.kiro/aws-aidlc-rule-details/` in your project
 3. Start any task with **"Using AI-DLC, ..."**
 
-See [POWER.md](POWER.md) for full onboarding and usage details.
+Works on **macOS**, **Linux**, and **Windows** wherever Kiro IDE runs. See [POWER.md](POWER.md) for full onboarding and platform-specific install commands.
 
 ## What's Included
 

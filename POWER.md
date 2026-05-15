@@ -38,12 +38,24 @@ You only need to install the rule details files that the workflow references:
 2. Extract the zip — it contains an `aidlc-rules/` folder with:
    - `aws-aidlc-rules/` — core workflow rules (already included in this power)
    - `aws-aidlc-rule-details/` — detailed rules referenced by the core workflow
-3. Copy the rule details and the latest core workflow into your project:
+3. Copy the rule details and the latest core workflow into your project. Run these commands from your project root:
 
+**macOS / Linux (bash, zsh)**
 ```bash
-# From your project root
 cp -R ~/Downloads/aidlc-rules/aws-aidlc-rule-details .kiro/aws-aidlc-rule-details
 cp -R ~/Downloads/aidlc-rules/aws-aidlc-rules/steering/* .kiro/steering/
+```
+
+**Windows (PowerShell)**
+```powershell
+Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rule-details .kiro\aws-aidlc-rule-details
+Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rules\steering\* .kiro\steering\
+```
+
+**Windows (Command Prompt)**
+```cmd
+xcopy /E /I "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rule-details" ".kiro\aws-aidlc-rule-details"
+xcopy /E /I "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rules\steering" ".kiro\steering"
 ```
 
 Your project should look like:

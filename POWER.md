@@ -20,7 +20,7 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 
 ## Available Steering Files
 
-- **core-workflow** (auto-included) — The complete AI-DLC adaptive workflow rules including all phases, stages, and decision logic. Automatically active when this power is installed.
+- **core-workflow** — The complete AI-DLC adaptive workflow rules including all phases, stages, and decision logic. Installed into your project's `.kiro/steering/` from the [aidlc-workflows release](https://github.com/awslabs/aidlc-workflows/releases/latest) (see Onboarding below). Once installed, Kiro auto-loads it as a steering file.
 
 ## Onboarding
 
@@ -30,32 +30,32 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 
 ### Installation
 
-The core workflow steering file is included with this power and activates automatically — no manual setup needed for the workflow itself.
-
-You only need to install the rule details files that the workflow references:
-
 1. Download the latest release from the [aidlc-workflows releases page](https://github.com/awslabs/aidlc-workflows/releases/latest)
 2. Extract the zip — it contains an `aidlc-rules/` folder with:
-   - `aws-aidlc-rules/` — core workflow rules (already included in this power)
+   - `aws-aidlc-rules/` — core workflow rules
    - `aws-aidlc-rule-details/` — detailed rules referenced by the core workflow
 3. Copy the rule details and the latest core workflow into your project. Run these commands from your project root:
 
 **macOS / Linux (bash, zsh)**
 ```bash
-cp -R ~/Downloads/aidlc-rules/aws-aidlc-rule-details .kiro/aws-aidlc-rule-details
-cp -R ~/Downloads/aidlc-rules/aws-aidlc-rules/steering/* .kiro/steering/
+mkdir -p .kiro/steering .kiro/aws-aidlc-rule-details
+cp -R ~/Downloads/aidlc-rules/aws-aidlc-rule-details/. .kiro/aws-aidlc-rule-details/
+cp -R ~/Downloads/aidlc-rules/aws-aidlc-rules/* .kiro/steering
 ```
 
 **Windows (PowerShell)**
 ```powershell
-Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rule-details .kiro\aws-aidlc-rule-details
-Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rules\steering\* .kiro\steering\
+New-Item -ItemType Directory -Force .kiro\steering, .kiro\aws-aidlc-rule-details | Out-Null
+Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rule-details\* .kiro\aws-aidlc-rule-details\
+Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rules\* .kiro\steering
 ```
 
 **Windows (Command Prompt)**
 ```cmd
-xcopy /E /I "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rule-details" ".kiro\aws-aidlc-rule-details"
-xcopy /E /I "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rules\steering" ".kiro\steering"
+mkdir .kiro\steering 2>nul
+mkdir .kiro\aws-aidlc-rule-details 2>nul
+xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rule-details" ".kiro\aws-aidlc-rule-details"
+xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rules" ".kiro\steering"
 ```
 
 Your project should look like:
@@ -69,16 +69,16 @@ Your project should look like:
 │   │   ├── operations/
 │   │   └── extensions/
 │   └── steering/
-│       └── core-workflow.md    ← updated from the latest release
+│       └── core-workflow.md   
 ```
 
 ### Verification
 
-Open the steering files panel in Kiro IDE and confirm you see an entry for `core-workflow` under the AI-DLC power. It should show as auto-included.
+Confirm the files exists in .kiro folder. Once confirmed the core-workflow should be auto loaded /injected as a steering file in the KIRO chat context, validate it and start the AIDLC workflow.
 
 ## Usage
 
-Start any development task by saying **"Using AI-DLC, ..."** followed by your intent. The workflow activates automatically and guides you through:
+The workflow activates automatically and displays the welcome message and guides you through:
 
 1. Structured questions (written to files, not chat)
 2. Execution plans showing which stages will run
@@ -154,10 +154,4 @@ Extensions are automatically loaded and enforced when enabled during the Require
 - Layer security and compliance extensions for regulated projects
 - For brownfield projects, let reverse engineering complete before requirements analysis
 
-## Additional Resources
 
-- [AI-DLC Method Definition Paper](https://prod.d13rzhkk8cj2z0.amplifyapp.com/)
-- [AI-DLC Methodology Blog](https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/)
-- [AI-DLC Open-source Launch Blog](https://aws.amazon.com/blogs/devops/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle-ai-dlc/)
-- [AI-DLC Example Walkthrough Blog](https://aws.amazon.com/blogs/devops/building-with-ai-dlc-using-amazon-q-developer/)
-- [GitHub Repository](https://github.com/awslabs/aidlc-workflows)

@@ -1,6 +1,6 @@
 # Sample KIRO Power AI-DLC
 
-A [Kiro Power](https://kiro.dev) that brings the **AI-Driven Development Life Cycle (AI-DLC)** adaptive workflow into your IDE.
+A [Kiro Power](https://kiro.dev/powers/) that brings the **AI-Driven Development Life Cycle (AI-DLC)** adaptive workflow into your IDE.
 
 AI-DLC is a structured three-phase software development methodology (Inception → Construction → Operations) that adapts to project complexity — simple changes stay efficient, complex changes get comprehensive treatment.
 

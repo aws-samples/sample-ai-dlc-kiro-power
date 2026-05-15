@@ -17,13 +17,15 @@ Works on **macOS**, **Linux**, and **Windows** wherever Kiro IDE runs. See [POWE
 | File | Purpose |
 |------|---------|
 | `POWER.md` | Power manifest — metadata, onboarding, usage guide |
-| `steering/core-workflow.md` | Complete adaptive workflow rules for all three phases |
 
-## Learn More
 
+## Additional Resources
+
+- [AI-DLC Method Definition Paper](https://prod.d13rzhkk8cj2z0.amplifyapp.com/)
 - [AI-DLC Methodology Blog](https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/)
-- [AI-DLC Open-source Launch](https://aws.amazon.com/blogs/devops/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle-ai-dlc/)
-- [Source Repository](https://github.com/awslabs/aidlc-workflows)
+- [AI-DLC Open-source Launch Blog](https://aws.amazon.com/blogs/devops/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle-ai-dlc/)
+- [AI-DLC Example Walkthrough Blog](https://aws.amazon.com/blogs/devops/building-with-ai-dlc-using-amazon-q-developer/)
+- [GitHub Repository](https://github.com/awslabs/aidlc-workflows)
 
 ## Security
 See CONTRIBUTING for more information.

@@ -155,3 +155,11 @@ Extensions are automatically loaded and enforced when enabled during the Require
 - For brownfield projects, let reverse engineering complete before requirements analysis
 
 
+
+## License and support
+
+This power is distributed under MIT-0 (MIT No Attribution).
+
+- Repository: https://github.com/aws-samples/sample-ai-dlc-kiro-power
+
+- Support / Issues: https://github.com/aws-samples/sample-ai-dlc-kiro-power/issues

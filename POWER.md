@@ -1,6 +1,6 @@
 ---
 name: "aidlc"
-displayName: "AI-DLC Workflow"
+displayName: "AI-DLC Workflow V1"
 description: "AI-Driven Development Life Cycle - an adaptive three-phase workflow (Inception, Construction, Operations) that guides structured software development with requirements analysis, design, implementation, and quality assurance."
 keywords: ["aidlc", "ai-dlc", "development lifecycle", "software development", "requirements", "design", "construction", "inception", "workflow", "sdlc"]
 author: "Amit-Verma-AWS"

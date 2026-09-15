@@ -20,7 +20,7 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 
 ## Available Steering Files
 
-- **core-workflow** — The complete AI-DLC adaptive workflow rules including all phases, stages, and decision logic. Installed into your project's `.kiro/steering/` from the [aidlc-workflows release](https://github.com/awslabs/aidlc-workflows/releases/latest) (see Onboarding below). Once installed, Kiro auto-loads it as a steering file.
+- **core-workflow** — The complete AI-DLC adaptive workflow rules including all phases, stages, and decision logic. Installed into your project's `.kiro/steering/` from the [aidlc-workflows v1 branch](https://github.com/awslabs/aidlc-workflows/tree/v1) (see Onboarding below). Once installed, Kiro auto-loads it as a steering file.
 
 ## Onboarding
 
@@ -28,10 +28,15 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 
 - Kiro IDE or Kiro CLI installed
 
+> **Version scope:** This power packages the **v1** AI-DLC workflow (steering-file based).
+> Upstream `main` and releases from v2.0.0 onward are a rewrite that installs via the native
+> `aidlc` CLI (`aidlc config --harness kiro-ide`) and are **not** compatible with these
+> instructions. Always use the v1 link below.
+
 ### Installation
 
-1. Download the latest release from the [aidlc-workflows releases page](https://github.com/awslabs/aidlc-workflows/releases/latest)
-2. Extract the zip — it contains an `aidlc-rules/` folder with:
+1. Download the v1 branch archive: [v1.zip](https://github.com/awslabs/aidlc-workflows/archive/refs/heads/v1.zip)
+2. Extract the zip — it creates an `aidlc-workflows-1/` folder containing `aidlc-rules/` with:
    - `aws-aidlc-rules/` — core workflow rules
    - `aws-aidlc-rule-details/` — detailed rules referenced by the core workflow
 3. Copy the rule details and the latest core workflow into your project. Run these commands from your project root:
@@ -39,23 +44,23 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 **macOS / Linux (bash, zsh)**
 ```bash
 mkdir -p .kiro/steering .kiro/aws-aidlc-rule-details
-cp -R ~/Downloads/aidlc-rules/aws-aidlc-rule-details/. .kiro/aws-aidlc-rule-details/
-cp -R ~/Downloads/aidlc-rules/aws-aidlc-rules/* .kiro/steering
+cp -R ~/Downloads/aidlc-workflows-1/aidlc-rules/aws-aidlc-rule-details/. .kiro/aws-aidlc-rule-details/
+cp -R ~/Downloads/aidlc-workflows-1/aidlc-rules/aws-aidlc-rules/* .kiro/steering
 ```
 
 **Windows (PowerShell)**
 ```powershell
 New-Item -ItemType Directory -Force .kiro\steering, .kiro\aws-aidlc-rule-details | Out-Null
-Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rule-details\* .kiro\aws-aidlc-rule-details\
-Copy-Item -Recurse $HOME\Downloads\aidlc-rules\aws-aidlc-rules\* .kiro\steering
+Copy-Item -Recurse $HOME\Downloads\aidlc-workflows-1\aidlc-rules\aws-aidlc-rule-details\* .kiro\aws-aidlc-rule-details\
+Copy-Item -Recurse $HOME\Downloads\aidlc-workflows-1\aidlc-rules\aws-aidlc-rules\* .kiro\steering
 ```
 
 **Windows (Command Prompt)**
 ```cmd
 mkdir .kiro\steering 2>nul
 mkdir .kiro\aws-aidlc-rule-details 2>nul
-xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rule-details" ".kiro\aws-aidlc-rule-details"
-xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-rules\aws-aidlc-rules" ".kiro\steering"
+xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-workflows-1\aidlc-rules\aws-aidlc-rule-details" ".kiro\aws-aidlc-rule-details"
+xcopy /E /I /Y "%USERPROFILE%\Downloads\aidlc-workflows-1\aidlc-rules\aws-aidlc-rules" ".kiro\steering"
 ```
 
 Your project should look like:
@@ -74,7 +79,17 @@ Your project should look like:
 
 ### Verification
 
-Confirm the files exists in .kiro folder. Once confirmed the core-workflow should be auto loaded /injected as a steering file in the KIRO chat context, validate it and start the AIDLC workflow.
+Confirm the copy actually landed — the failure mode is empty directories, not an error message:
+
+```bash
+test -s .kiro/steering/core-workflow.md && echo "steering OK"
+ls -d .kiro/aws-aidlc-rule-details/*/ | wc -l              # expect 5
+find .kiro/aws-aidlc-rule-details -name '*.md' | wc -l     # expect 31
+```
+
+Expected: `core-workflow.md` non-empty, five subdirectories (`common`, `construction`,
+`extensions`, `inception`, `operations`), and 31 rule files. Once confirmed, `core-workflow` is
+auto-loaded as a steering file in the Kiro chat context and you can start the AI-DLC workflow.
 
 ## Usage
 
@@ -118,17 +133,26 @@ Deployment and monitoring (placeholder for future expansion).
 
 ## Extensions
 
-AI-DLC supports extensions under `aws-aidlc-rule-details/extensions/` for additional rules like:
-- Security baselines
-- Compliance (HIPAA, PCI-DSS, SOC2)
-- Organization-specific policies
+AI-DLC v1 ships three extensions under `aws-aidlc-rule-details/extensions/`:
+
+- `security/baseline/` — security baseline
+- `resiliency/baseline/` — resiliency baseline
+- `testing/property-based/` — property-based testing
+
+Compliance packs (HIPAA, PCI-DSS, SOC2) and organization-specific policies are not included —
+add them as custom extensions (below).
 
 Extensions are automatically loaded and enforced when enabled during the Requirements Analysis phase. Each extension includes an applicability question so users can opt in or out per project.
 
 ### Adding Custom Extensions
 
 1. Create a directory under `extensions/` (e.g., `extensions/compliance/hipaa/`)
-2. Add markdown files with rules following the same structure as `security-baseline.md`
+2. Add two files, using `extensions/security/baseline/` as the reference:
+   - `<name>.opt-in.md` — the opt-in prompt shown during Requirements Analysis
+   - `<name>.md` — the rules themselves, loaded only after the user opts in
+
+   Pairing is by naming convention: `<name>.opt-in.md` → `<name>.md`. Omitting the `.opt-in.md`
+   file makes the extension unconditionally enforced with no way to decline.
 3. Include an Applicability Question, Rule section, and Verification section
 4. Rules are blocking by default — non-compliance prevents stage progression
 

@@ -35,7 +35,7 @@ The workflow adapts to project complexity: simple changes stay efficient, comple
 
 ### Installation
 
-1. Always Download the v1 branch latest archive version: ie.g. [v1.zip](https://github.com/awslabs/aidlc-workflows/archive/refs/heads/v1.zip)
+1. Always Download the v1 branch latest archive version: e.g. [v1.zip](https://github.com/awslabs/aidlc-workflows/archive/refs/heads/v1.zip)
 2. Extract the zip — it creates an `aidlc-workflows-1/` folder containing `aidlc-rules/` with:
    - `aws-aidlc-rules/` — core workflow rules
    - `aws-aidlc-rule-details/` — detailed rules referenced by the core workflow
